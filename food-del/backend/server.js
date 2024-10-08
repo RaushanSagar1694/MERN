@@ -15,8 +15,9 @@ const port = 400;
 
 
 //middleware
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({extended : true}));
 
 
 // DB connection
@@ -27,24 +28,6 @@ connectDB();
 // api endpoints
 app.use("/api/food", foodRouter);
 app.use("/images", express.static('uploads'));
-
-
-//add data 
-const user = new foodModel({
-    name : "test 1",
-    description: "desc test",
-    price: 10,
-    
-    category: "veg"
-})
-
-
-// user.save().then((res) => {
-//     console.log("data saved Successfuly");
-// })
-// .catch((err) => {
-//     console.log(err);
-// })
 
 
 
