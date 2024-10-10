@@ -29,14 +29,15 @@ hr{
 .app-content {
     display: flex;
 }
+
+/* .flex-col{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+} */
   
-/* .sidebar {
-    width: 40%; 
-    border-right: 1px solid #ccc; 
-}
 
 .main-content {
     flex-grow: 1; 
-    padding: 20px;
-    background-color: #f9f9f9; 
-} */
+    width: 100%;
+}

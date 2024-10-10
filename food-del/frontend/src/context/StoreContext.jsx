@@ -1,15 +1,15 @@
-
 import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
 
+
+
 export const StoreContext = createContext(null);
 
-
-
-//create StoreContext that store the all data
 const StoreContextProvider = (props) => {
-
     const [cartItems, setCartItems] = useState({});
+
+    const url = "http://localhost:400"; // Corrected URL format
+    const [token, setToken] = useState(""); // Fixed typo from cosnt to const
 
     const addToCart = (itemId) => {
         if(!cartItems[itemId]){
@@ -38,26 +38,34 @@ const StoreContextProvider = (props) => {
     }
 
 
-    // useEffect(()=>{
+    useEffect(() => {
+        console.log(localStorage.getItem("token"));
+        
+        if(localStorage.getItem("token")){
+            setToken(localStorage.getItem("token"));
+        }
+    },[])
+
+    // useEffect(() => {
     //     console.log(cartItems);
-    // },[cartItems])
+    // }, [cartItems]);
 
-
-
-    // passing the data
     const contextValue = {
-        food_list, 
-        cartItems, 
-        addToCart, 
-        removeFromCart, 
-        getTotalCartAmount
-    }
+        food_list,
+        cartItems,
+        addToCart,
+        removeFromCart,
+        getTotalCartAmount,
+        url,
+        token,
+        setToken,
+    };
+
     return (
         <StoreContext.Provider value={contextValue}>
             {props.children}
         </StoreContext.Provider>
-    )
-}
-
+    );
+};
 
 export default StoreContextProvider;
